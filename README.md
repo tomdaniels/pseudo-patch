@@ -23,7 +23,7 @@ Works with [version-changelog](https://www.npmjs.com/package/version-changelog) 
  ```diff
   {
    "name": "your-project",
--  "version": "1.29.4",
-+  "version": "1.29.5",
+-  "version": "1.0.0",
++  "version": "1.0.1",
   }
  ```
