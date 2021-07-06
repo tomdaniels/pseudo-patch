@@ -1,5 +1,9 @@
 # pseudo-patch [![npm version](https://badge.fury.io/js/pseudo-patch.svg)](https://badge.fury.io/js/pseudo-patch)
 
+Edge case solve for CI/CD pipelines or lambdas/any prroject really that doesn't need to published to npm, but has some changelog formatting dependancies.
+
+It assumees your projects `CHANGELOG.md` adheres to [Semantic Versioning](http://semver.org/), in the [keepachangelog](http://keepachangelog.com/) format.
+
 ## Install
 
 - install in your project

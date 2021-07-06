@@ -1,6 +1,6 @@
 {
   "name": "pseudo-patch",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "fake patch on packageJson file",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,9 @@
     "npm",
     "version",
     "packageJson",
-    "package.json"
+    "package.json",
+    "semver",
+    "keepachangelog"
   ],
   "author": "Tom Daniels",
   "license": "ISC"
