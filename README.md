@@ -20,6 +20,12 @@ yarn add pseudo-patch
 }
 ```
 
+# Usage
+
+```
+npm run pseudo-patch
+```
+
 ## What it does
 
 nothing more then increase the package.json.
