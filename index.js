@@ -7,7 +7,9 @@ const findPatch = array => array.pop(); // grab patch version ('2')
 const converToNumber = str => parseInt(str); // '2' into 2
 const increment = number => number + 1;
 
-fs.readFile('./package.json', (err, pkgJson) => {
+const packageJson = './package.json';
+
+fs.readFile(packageJson, (err, pkgJson) => {
   if (err) throw Error(`on read: ${err}`);
 
   const pkg = JSON.parse(pkgJson);
@@ -29,7 +31,7 @@ fs.readFile('./package.json', (err, pkgJson) => {
     version: versionToUse,
   }, null, 2);
 
-  fs.writeFileSync('./package.json', packageJson, (err) => {
+  fs.writeFileSync(packageJson, packageJson, (err) => {
       if (err) throw `on write: ${err}`;
   });
 });
