@@ -15,9 +15,8 @@ yarn add pseudo-patch
   }
 }
 ```
-----
 
- # What it does
+## What it does
 
 nothing more then increase the package.json.
 Works with [version-changelog](https://www.npmjs.com/package/version-changelog) and similar changelog formatting solutions that rely on the `package.json['version']` being already icremented.
