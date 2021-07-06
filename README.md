@@ -1,4 +1,4 @@
-# pseudo-patch
+# pseudo-patch [![npm version](https://badge.fury.io/js/pseudo-patch.svg)](https://badge.fury.io/js/pseudo-patch)
 
 ## Install
 
