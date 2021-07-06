@@ -1,37 +1,46 @@
 const fs = require('fs');
+const path = require('path');
+
+// new folder absolute path
+const RELATIVE_PKG_PATH = './package.json';
+const packageJsonPath = path.join(process.cwd(), RELATIVE_PKG_PATH);
+
+// current packageJson & version number
+const pkg = require(packageJsonPath);
+const { version: pkgVersion } = pkg;
 
 const flow = (...fns) => (x) => fns.reduce((v, f) => f(v), x);
 
-const splitParts = array => array.split('.'); // '1.0.2' into ['1', '0', '2']
-const findPatch = array => array.pop(); // grab patch version ('2')
-const converToNumber = str => parseInt(str); // '2' into 2
+const splitParts = string => string.split('.'); // '1.0.2' into ['1', '0', '2']
+const toNumbers = array => array.map((item) => parseInt(item)); // ['1', '0', '2'] into [1 , 2, 3]
+const findPatch = array => array.pop(); // '2' into 2
 const increment = number => number + 1;
+const toString = number => number.toString();
 
-const packageJson = './package.json';
+const getPatchVersion = flow(
+  splitParts,
+  toNumbers,
+  findPatch,
+);
 
-fs.readFile(packageJson, (err, pkgJson) => {
-  if (err) throw Error(`on read: ${err}`);
+const newPatchVersion = flow(
+  getPatchVersion,
+  increment,
+  toString,
+);
 
-  const pkg = JSON.parse(pkgJson);
-  const { version: pkgVersion } = pkg;
-  const newPatchVersion = flow(
-    splitParts,
-    findPatch,
-    converToNumber,
-    increment,
-  );
+// TODO each run of the scrip updates the previous item in the array :thinking:
+const versionToUse = pkgVersion.replace(
+  getPatchVersion(pkgVersion),
+  newPatchVersion(pkgVersion)
+);
+console.log(versionToUse);
 
-  const versionToUse = pkgVersion.replace(
-    splitParts(pkgVersion).pop(),
-    newPatchVersion(pkgVersion)
-  );
+const packageJson = JSON.stringify({
+  ...pkg,
+  version: versionToUse,
+}, null, 2);
 
-  const packageJson = JSON.stringify({
-    ...pkg,
-    version: versionToUse,
-  }, null, 2);
-
-  fs.writeFileSync(packageJson, packageJson, (err) => {
-      if (err) throw `on write: ${err}`;
-  });
+fs.writeFileSync(packageJsonPath, packageJson, (err) => {
+    if (err) throw `on write: ${err}`;
 });
