@@ -15,7 +15,7 @@ yarn add pseudo-patch
 ```json
 {
   "scripts": {
-    "pseudo-patch": "pseudo-patch"
+    "pseudo-patch": "node ./node_modules/pseudo-patch"
   }
 }
 ```
