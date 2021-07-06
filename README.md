@@ -2,7 +2,7 @@
 
 This tool assumes your projects `CHANGELOG.md` adheres to [Semantic Versioning](http://semver.org/), in the [keepachangelog](http://keepachangelog.com/) format.
 
-Works with  [version-changelog](https://www.npmjs.com/package/version-changelog) and [changelog-version](https://www.npmjs.com/package/changelog-version), I think it will work with any changelog formatting tool other then semantic-release, that rely on the `package.json['version']` being already icremented.
+Works with  [version-changelog](https://www.npmjs.com/package/version-changelog) and [changelog-version](https://www.npmjs.com/package/changelog-version), I think it will work with any changelog formatting tool other then semantic-release, that rely on the `package.json['version']` being already icremented to format your changelog.
 
 ## Install
 
