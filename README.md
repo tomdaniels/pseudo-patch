@@ -4,6 +4,8 @@ This tool assumes your projects `CHANGELOG.md` adheres to [Semantic Versioning](
 
 Works with  [version-changelog](https://www.npmjs.com/package/version-changelog) and [changelog-version](https://www.npmjs.com/package/changelog-version), I think it will work with any changelog formatting tool other then semantic-release, that rely on the `package.json['version']` being already icremented to format your changelog.
 
+_this was an edge case solve for some lambda pipelines that had the formatting dependancies, published so I can easily reuse, but hey.. it might be helpful to someone else out there /shrug_
+
 ## Install
 
 - install in your project
