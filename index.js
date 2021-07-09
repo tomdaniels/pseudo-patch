@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-
 // new folder absolute path
 const RELATIVE_PKG_PATH = './package.json';
 const packageJsonPath = path.join(process.cwd(), RELATIVE_PKG_PATH);
@@ -10,36 +9,35 @@ const pkg = require(packageJsonPath);
 const { version: pkgVersion } = pkg;
 
 const flow = (...fns) => (x) => fns.reduce((v, f) => f(v), x);
+const dropLast = array => array.slice(0, -1);
+const join = array => array.join('.');
 
-const splitParts = string => string.split('.'); // '1.0.2' into ['1', '0', '2']
-const toNumbers = array => array.map((item) => parseInt(item)); // ['1', '0', '2'] into [1 , 2, 3]
-const findPatch = array => array.pop(); // '2' into 2
-const increment = number => number + 1;
-const toString = number => number.toString();
+const splitParts = string => string.split('.');
+const toNumbers = array => array.map((string) => Number(string));
+const getLast = array => array.pop();
+const toNumber = number => parseInt(number);
+const bump = number => number + 1;
 
-const getPatchVersion = flow(
+// removes the last "number" from the string "x.x.x"
+// => string ('x.x')
+const strip = flow(
   splitParts,
   toNumbers,
-  findPatch,
+  dropLast,
+  join,
 );
 
-const newPatchVersion = flow(
-  getPatchVersion,
-  increment,
-  toString,
+// increase the last "number" from the string "x.x.x"
+// => number x + 1
+const pseudoPatch = flow(
+  splitParts,
+  getLast,
+  toNumber,
+  bump
 );
 
-// TODO each run of the scrip updates the previous item in the array :thinking:
-const versionToUse = pkgVersion.replace(
-  getPatchVersion(pkgVersion),
-  newPatchVersion(pkgVersion)
-);
-console.log(versionToUse);
-
-const packageJson = JSON.stringify({
-  ...pkg,
-  version: versionToUse,
-}, null, 2);
+const version = `${strip(pkgVersion)}.${pseudoPatch(pkgVersion)}`; // === 'x.x' + '.x'
+const packageJson = JSON.stringify({ ...pkg, version }, null, 2);
 
 fs.writeFileSync(packageJsonPath, packageJson, (err) => {
     if (err) throw `on write: ${err}`;
