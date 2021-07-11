@@ -38,4 +38,12 @@ nothing more then increase the package.json.
 +  "version": "1.0.1",
   }
  ```
+
+ ### Options
+
+```bash
+$ pseudo-patch
+    -s, --spacing <number>        Preferred JSON file indent spaces (defaults to 2)
+```
+
  
