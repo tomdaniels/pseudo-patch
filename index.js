@@ -4,16 +4,17 @@ const pseudoPatch = require('./lib/pseudo-patch');
 const cli = new Command();
 const opts = [
   {
-    flags: '-s, --spacing <type>',
+    flag: '-s, --spacing <type>',
     desc: 'preferred indent spacing size',
-    // this handler is not required for all opts
-    // commander parses all args as strings
+    // handler will not be required for all opts,
+    // but commander parses all args as strings
     handler: (val) => parseInt(val, 10)
   },
-  // extend me..
 ];
+
+// register flags
 opts.forEach((opt) => cli.option(
-  opt.flags,
+  opt.flag,
   opt.desc,
   opt.handler,
 ));
