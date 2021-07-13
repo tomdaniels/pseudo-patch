@@ -6,10 +6,13 @@ const opts = [
   {
     flag: '-s, --spacing <type>',
     desc: 'preferred indent spacing size',
-    // handler will not be required for all opts,
-    // but commander parses all args as strings
+    // commander parses all args as strings
     handler: (val) => parseInt(val, 10)
   },
+  {
+    flag: '-p, --path <type>',
+    desc: 'path to package.json (if not <projectRoot>/package.json)'
+  }
 ];
 
 // register flags
