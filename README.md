@@ -44,6 +44,7 @@ nothing more then increase the package.json.
 ```bash
 $ pseudo-patch
     -s, --spacing <number>        Preferred JSON file indent spaces (defaults to 2)
+    -p, --path <type>             path to package.json (if not <projectRoot>/package.json)
 ```
 
  
