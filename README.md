@@ -1,16 +1,12 @@
 # pseudo-patch [![npm version](https://badge.fury.io/js/pseudo-patch.svg)](https://badge.fury.io/js/pseudo-patch)
 
-this was an edge case solve for a ci pipeline that had formatting dependancies on a `CHANGELOG.md` where the package.json file had to be updated first, published here so I can easily reuse, but hey.. it might be helpful to someone else out there ¯\\\_(ツ)\_/¯
+this was a silly edge case solve and an excuse to learn something new, published here so I can easily reuse, and hey.. it might be helpful to someone else out there ¯\\\_(ツ)\_/¯
 
 ## Install
-
-- install in your project
 
 ```bash
 yarn add pseudo-patch
 ```
-
-- configure `package.json`:
 
 ```json
 {
@@ -28,7 +24,7 @@ npm run pseudo-patch [opts]
 
 ## What it does
 
-nothing more then increase the package.json, default is `patch` though supports `-t` flag if you need `major` or `minor` for whatever reason.
+nothing more then increase the package.json, by default and design it will be a `patch` update. But I later extended it out of bordem to support `--major` and `--minor` flags should anyone out there actuall want, or need it.
 
 ```diff
  {
