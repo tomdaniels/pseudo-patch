@@ -4,14 +4,18 @@ const pseudoPatch = require('./lib/pseudo-patch');
 const cli = new Command();
 const opts = [
   {
-    flag: '-s, --spacing <type>',
+    flag: '-s, --spacing <number>',
     desc: 'preferred indent spacing size',
     // commander parses all args as strings
     handler: (val) => parseInt(val, 10)
   },
   {
-    flag: '-p, --path <type>',
+    flag: '-p, --path <string>',
     desc: 'path to package.json (if not <projectRoot>/package.json)'
+  },
+  {
+    flag: '-t, --type <string>',
+    desc: "version bump type: 'major', 'minor' or 'patch' which is the default"
   }
 ];
 

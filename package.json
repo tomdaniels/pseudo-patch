@@ -1,6 +1,6 @@
 {
   "name": "pseudo-patch",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "fake patch on packageJson file",
   "main": "index.js",
   "bin": {
