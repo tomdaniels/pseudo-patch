@@ -1,19 +1,17 @@
 # pseudo-patch [![npm version](https://badge.fury.io/js/pseudo-patch.svg)](https://badge.fury.io/js/pseudo-patch)
 
-This tool assumes your projects `CHANGELOG.md` adheres to [Semantic Versioning](http://semver.org/), in the [keepachangelog](http://keepachangelog.com/) format.
-
-Works with  [version-changelog](https://www.npmjs.com/package/version-changelog) and [changelog-version](https://www.npmjs.com/package/changelog-version), I think it will work with any changelog formatting tool other then semantic-release, that rely on the `package.json['version']` being already icremented to format your changelog.
-
-_this was an edge case solve for some lambda pipelines that had the formatting dependancies, published so I can easily reuse, but hey.. it might be helpful to someone else out there /shrug_
+this was an edge case solve for some lambda pipelines that had formatting dependancies on a `CHANGELOG.md` where the version had to be updated first, published here so I can easily reuse, but hey.. it might be helpful to someone else out there ¯\\\_(ツ)\_/¯
 
 ## Install
 
 - install in your project
+
 ```bash
 yarn add pseudo-patch
 ```
 
 - configure `package.json`:
+
 ```json
 {
   "scripts": {
@@ -25,26 +23,26 @@ yarn add pseudo-patch
 # Usage
 
 ```
-npm run pseudo-patch
+npm run pseudo-patch [opts]
 ```
 
 ## What it does
 
-nothing more then increase the package.json.
- ```diff
-  {
-   "name": "your-project",
+nothing more then increase the package.json, default is `patch` though supports `-t` flag if you need `major` or `minor` for whatever reason.
+
+```diff
+ {
+  "name": "your-project",
 -  "version": "1.0.0",
 +  "version": "1.0.1",
-  }
- ```
-
- ### Options
-
-```bash
-$ pseudo-patch
-    -s, --spacing <number>        Preferred JSON file indent spaces (defaults to 2)
-    -p, --path <type>             path to package.json (if not <projectRoot>/package.json)
+ }
 ```
 
- 
+### Options
+
+```
+$ pseudo-patch
+    -s, --spacing <number>        Preferred JSON file indent spaces (defaults to 2)
+    -p, --path <string>           path to package.json (if not <projectRoot>/package.json)
+    -t, --type <string>           version bump type: 'major', 'minor' or 'patch' which is the default
+```
